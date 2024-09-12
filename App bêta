@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Association de Danse Tahitienne</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background-color: #0288d1; color: white; padding: 10px 0; text-align: center; }
+        nav { margin: 10px; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        section { padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h2 { color: #0288d1; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 10px; text-align: left; }
+        th { background-color: #0288d1; color: white; }
+        .calendar { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+        .calendar div { background-color: #f1f1f1; padding: 10px; border: 1px solid #ddd; }
+        footer { background-color: #0288d1; color: white; text-align: center; padding: 10px; position: fixed; width: 100%; bottom: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Association de Danse Tahitienne</h1>
+        <nav>
+            <a href="#budget">Budget</a>
+            <a href="#planning">Planning</a>
+            <a href="#membres">Membres</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section id="budget" class="container">
+        <h2>Budget</h2>
+        <p>Total Budget: <span id="total-budget">1000 €</span></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Montant</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody id="budget-table">
+                <!-- Budget entries will go here -->
+            </tbody>
+        </table>
+        <button onclick="addBudgetEntry()">Ajouter une Dépense/Recette</button>
+    </section>
+    <section id="planning" class="container">
+        <h2>Planning</h2>
+        <div class="calendar" id="calendar">
+            <!-- Calendar events will go here -->
+        </div>
+    </section>
+    <section id="membres" class="container">
+        <h2>Membres</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Rôle</th>
+                </tr>
+            </thead>
+            <tbody id="members-table">
+                <!-- Members will go here -->
+            </tbody>
+        </table>
+        <button onclick="addMember()">Ajouter un Membre</button>
+    </section>
+    <section id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:contact@associationtahitienne.com">contact@associationtahitienne.com</a></p>
+        <p>Téléphone: +689 123 456</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Association de Danse Tahitienne</p>
+    </footer>
+    <script>
+        const budgetTable = document.getElementById('budget-table');
+        const membersTable = document.getElementById('members-table');
+        const calendar = document.getElementById('calendar');
+
+        function addBudgetEntry() {
+            const date = prompt("Date de la dépense/recette:");
+            const description = prompt("Description:");
+            const montant = prompt("Montant:");
+            const type = prompt("Type (Dépense/Recette):");
+            
+            const row = `<tr>
+                <td>${date}</td>
+                <td>${description}</td>
+                <td>${montant} €</td>
+                <td>${type}</td>
+            </tr>`;
+            budgetTable.innerHTML += row;
+        }
+
+        function addMember() {
+            const name = prompt("Nom du membre:");
+            const role = prompt("Rôle du membre:");
+            
+            const row = `<tr>
+                <td>${name}</td>
+                <td>${role}</td>
+            </tr>`;
+            membersTable.innerHTML += row;
+        }
+
+        function addEvent(date, description) {
+            const event = `<div>${date} : ${description}</div>`;
+            calendar.innerHTML += event;
+        }
+
+        // Example events
+        addEvent('2024-09-20', 'Répétition au studio');
+        addEvent('2024-09-25', 'Spectacle au théâtre local');
+    </script>
+</body>
+</html>
